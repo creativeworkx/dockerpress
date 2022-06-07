@@ -31,3 +31,6 @@ activate wp redis integration
 ```
 docker compose exec wordpress_cli wp redis enable
 ```
+
+## BEWARE
+Don't use in PRODUCTION
