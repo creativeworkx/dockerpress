@@ -26,7 +26,7 @@ install and activate plugins: query-monitor and redis-cache using wordpress cli
 docker compose exec wordpress_cli wp plugin install query-monitor redis-cache --activate
 ```
 
-activate wp redis integration
+activate wp redis integration using wordpress cli
 
 ```
 docker compose exec wordpress_cli wp redis enable
