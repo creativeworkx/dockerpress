@@ -1,8 +1,7 @@
 # Docker & Wordpress 6 & Redis 7 & PHP 8.1 
 
-## install
 
-create and enter directory
+fetch docker-compose.yml file
 
 ```
 curl -L https://raw.githubusercontent.com/creativeworkx/dockerpress/master/docker-compose.yml
