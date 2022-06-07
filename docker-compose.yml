@@ -1,0 +1,92 @@
+services:
+  # database
+  db:
+    image: mariadb
+    container_name: crw_mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: exampledb
+      MARIADB_USER: exampleuser
+      MARIADB_PASSWORD: examplepass
+      MARIADB_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - wordpress  
+
+  # database administration - http://localhost:8080
+  phpmyadmin:
+      image: phpmyadmin
+      container_name: crw_phpmyadmin
+      depends_on:
+        - db
+      restart: always
+      ports:
+        - 8080:80
+      environment:
+        PMA_HOST: db
+        PMA_USER: exampleuser
+        PMA_PASSWORD: examplepass
+      networks:
+        - wordpress           
+
+  # cache # todo add pwd
+  redis:
+      image: redis
+      container_name: crw_redis
+      restart: always
+      ports:
+        - 6379:6379
+      command: redis-server --save 60 1 --loglevel warning --requirepass redispass
+      volumes:
+        - redis:/data      
+      networks:
+        - wordpress
+
+  # wordpress - http://localhost
+  wordpress:
+    image: wordpress:php8.1
+    container_name: crw_wp
+    depends_on:
+      - db
+      - redis
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_REDIS_HOST', 'redis' );
+        define( 'WP_REDIS_PORT', 6379 );
+        define( 'WP_REDIS_PASSWORD', 'redispass' );
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - wordpress
+
+  wordpress_cli:
+    container_name: crw_wp_cli
+    depends_on:
+      - wordpress
+    image: wordpress:cli-php8.1
+    user: 33:33
+    command: tail -f /dev/null
+    volumes:
+      - wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    networks:
+      - wordpress      
+
+volumes:
+  wordpress:
+  db:
+  redis:
+networks:
+  wordpress:
