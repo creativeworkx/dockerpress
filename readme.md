@@ -32,5 +32,10 @@ activate wp redis integration
 docker compose exec wordpress_cli wp redis enable
 ```
 
+## USAGE
+Wordpress: [http://localhost/](http://localhost) -> Login an [http://localhost/wp-admin](http://localhost)
+
+PhpMyAdmin: [http://localhost:8080](http://localhost:8080) -> Already logged in
+
 ## BEWARE
 Don't use in PRODUCTION
