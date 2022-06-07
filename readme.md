@@ -1,6 +1,6 @@
 # Docker: Wordpress 6 & Redis 7 & PHP 8.1 & MariaDB 10.8 & phpmyadmin 
 
-## Installation
+## INSTALLTION
 
 fetch docker-compose.yml file
 
