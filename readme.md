@@ -5,7 +5,7 @@
 create and enter directory
 
 ```
-curl -Lo sdsdsdsdsd
+curl -L https://raw.githubusercontent.com/creativeworkx/dockerpress/master/docker-compose.yml
 ```
 
 ```
