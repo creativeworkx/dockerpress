@@ -1,7 +1,7 @@
 services:
   # database
   db:
-    image: mariadb
+    image: mariadb:10.8
     container_name: crw_mariadb
     restart: always
     environment:
@@ -32,7 +32,7 @@ services:
 
   # cache # todo add pwd
   redis:
-      image: redis
+      image: redis:7
       container_name: crw_redis
       restart: always
       ports:
@@ -45,7 +45,7 @@ services:
 
   # wordpress - http://localhost
   wordpress:
-    image: wordpress:php8.1
+    image: wordpress:6-php8.1-apache
     container_name: crw_wp
     depends_on:
       - db
