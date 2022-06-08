@@ -9,9 +9,7 @@ services:
       MARIADB_PASSWORD: examplepass
       MARIADB_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - db:/var/lib/mysql
-    networks:
-      - wordpress  
+      - db:/var/lib/mysql 
 
   # database administration - http://localhost:8080
   phpmyadmin:
@@ -24,9 +22,7 @@ services:
       environment:
         PMA_HOST: db
         PMA_USER: exampleuser
-        PMA_PASSWORD: examplepass
-      networks:
-        - wordpress           
+        PMA_PASSWORD: examplepass           
 
   # redis for object caching
   redis:
@@ -37,8 +33,6 @@ services:
       command: redis-server --save 60 1 --loglevel warning --requirepass redispass
       volumes:
         - redis:/data      
-      networks:
-        - wordpress
 
   # wordpress - http://localhost
   wordpress:
@@ -60,8 +54,6 @@ services:
         define( 'WP_REDIS_PASSWORD', 'redispass' );
     volumes:
       - wordpress:/var/www/html
-    networks:
-      - wordpress
 
   wordpress_cli:
     container_name: crw_wp_cli
@@ -76,13 +68,9 @@ services:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
-    networks:
-      - wordpress      
+      WORDPRESS_DB_NAME: exampledb 
 
 volumes:
   wordpress:
   db:
   redis:
-networks:
-  wordpress:
