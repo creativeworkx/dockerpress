@@ -2,10 +2,16 @@
 
 ## INSTALLATION
 
-fetch docker-compose.yml file
+fetch docker-compose.yml file (*nix)
 
 ```
 curl -L https://raw.githubusercontent.com/creativeworkx/dockerpress/master/docker-compose.yml
+```
+
+fetch docker-compose.yml file (Windows)
+
+```
+curl.exe -L -o docker-compose.yml https://raw.githubusercontent.com/creativeworkx/dockerpress/master/docker-compose.yml
 ```
 
 start the containers
