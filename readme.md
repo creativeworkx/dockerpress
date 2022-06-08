@@ -1,4 +1,4 @@
-# Docker: Wordpress 6 & Redis 7 & PHP 8.1 & MariaDB 10.8 & phpmyadmin 
+# Docker: Wordpress 6 & Redis 7 & PHP 8.1 & MariaDB 10.8 & phpMyAdmin 
 
 ## INSTALLATION
 
@@ -35,7 +35,7 @@ docker compose exec wordpress_cli wp redis enable
 ## USAGE
 Wordpress: [http://localhost/](http://localhost) -> Login at [http://localhost/wp-admin](http://localhost)
 
-PhpMyAdmin: [http://localhost:8080](http://localhost:8080) -> Already logged in
+phpMyAdmin: [http://localhost:8080](http://localhost:8080) -> Already logged in
 
 ## BEWARE
 Don't use in PRODUCTION
